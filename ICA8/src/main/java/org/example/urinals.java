@@ -9,7 +9,6 @@ public class urinals {
 
     }
     public static boolean goodString(String str){
-        System.out.println("Not yet implemented");
         return true;
     }
 }
