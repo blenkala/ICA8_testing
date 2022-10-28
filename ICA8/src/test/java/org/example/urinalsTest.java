@@ -59,4 +59,6 @@ class urinalsTest {
         urinals uobj=new urinals();
         assertEquals(1,uobj.urinalscount("01000"));
     }
+
+
 }

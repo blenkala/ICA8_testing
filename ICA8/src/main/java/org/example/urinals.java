@@ -66,7 +66,7 @@ public class urinals {
         System.out.println("How would you like to give input: 1 for scanner 2 for file");
         Scanner sc=new Scanner(System.in);
         String inputVal=sc.next();
-        if(inputVal.equals(1)) {
+        if(inputVal.equals("1")) {
             System.out.println("Enter the string you want to test:");
             String str = sc.next();
             sarr[0]=inputVal;
