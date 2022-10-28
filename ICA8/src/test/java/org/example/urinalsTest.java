@@ -7,11 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class urinalsTest {
 
     @Test
-    void main() {
-        fail("tty");
-    }
-
-    @Test
-    void add() {
+    public void testGoodString() {
+      System.out.println("======Bhavani Lenkala == TEST ONE EXECUTED =======");
+      fail("Test case one failed!!");
     }
 }
