@@ -80,16 +80,13 @@ public class urinals {
                     {
                         arr[i]=arr[i-1];
                     }
-                    else if(stringFromInput.charAt(i+1)=='1'&& i+1< stringFromInput.length() )
+                    else if(i+1< stringFromInput.length() && stringFromInput.charAt(i+1)=='1' )
                     {
                         arr[i]=arr[i-1];
                     }
                     else
-                    {   if(arr[i]> 1+arr[i+2])
-                        arr[i]=arr[i];
-                        else
-                        arr[i]=arr[i-2]+1;
-                        //arr[i]=Math.max(arr[i],1+arr[i-2]);
+                    {
+                        arr[i]=Math.max(arr[i],1+arr[i-2]);
                     }
                 }
             }
