@@ -7,16 +7,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class urinalsTest {
     @Test
+    public void test2GoodString() {
+        System.out.println("======Bhavani Lenkala == TEST TWO EXECUTED =======");
+        urinals uobj=new urinals();
+        assertEquals(true,uobj.goodString("10001"));
+    }
+    @Test
     public void test3GoodString() {
         System.out.println("======Bhavani Lenkala == TEST THREE EXECUTED =======");
         urinals uobj=new urinals();
         assertEquals(true,uobj.goodString("1001"));
     }
+
     @Test
-    public void test2GoodString() {
-      System.out.println("======Bhavani Lenkala == TEST TWO EXECUTED =======");
-      urinals uobj=new urinals();
-      assertEquals(true,uobj.goodString("10001"));
+    public void test4GoodString() {
+        System.out.println("======Bhavani Lenkala == TEST FOUR EXECUTED =======");
+        urinals uobj=new urinals();
+        assertEquals(false,uobj.goodString("011"));
     }
 
 }

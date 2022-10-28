@@ -8,18 +8,16 @@ public class urinals {
     public static void main(String[] args) throws FileNotFoundException {
 
     }
-    public static boolean goodString(String str){
-        for(int i=0;i<str.length();i++)
+    public static boolean goodString(String inputString){
+        for(int i=0;i<inputString.length();i++)
         {
-            if(str.charAt(i)=='0' || str.charAt(i)=='1')
-            {
-                if(i>0 && str.charAt(i)=='1' && str.charAt(i-1)=='1')
-                {
-                    return false;
-                }
+            if(inputString.charAt(i)!='0' || inputString.charAt(i)!='1')
+            { return false;
             }
             else {
-                return false;
+                if(i>0)
+                    if(inputString.charAt(i)=='1' && inputString.charAt(i-1)=='1')
+                        return false;
             }
         }
         return true;
