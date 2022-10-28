@@ -26,4 +26,12 @@ class urinalsTest {
         assertEquals(false,uobj.goodString("011"));
     }
 
+    @Test
+    public void test5GoodString() {
+        System.out.println("======Bhavani Lenkala == TEST FIVE EXECUTED =======");
+        urinals uobj=new urinals();
+        assertEquals(1,uobj.urinalscount("10001"));
+    }
+
+
 }
