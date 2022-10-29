@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.*;
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class urinals {
@@ -25,8 +26,7 @@ public class urinals {
                 NameOftheFile[i] = "rule"+ i +".txt";
             }
         }
-        FileReader fssd = new FileReader("src/main/java/org/example/urinals.dat");
-        BufferedReader fb = new BufferedReader(fssd);
+
         String PathOftheFile = "src/main/java/org/example/";
         for(int i=0;i<100;i++){
             File ffr = new File(PathOftheFile+NameOftheFile[i]);
@@ -38,23 +38,46 @@ public class urinals {
                 break;
             }
         }
+        FileReader fssd=null;
+        try{
+         fssd = new FileReader("src/main/java/org/example/urinals.dat");}
+        catch (FileNotFoundException e){
+            System.out.println("File not found!");
+            System.exit(0);
+        }
+        BufferedReader fb = new BufferedReader(fssd);
         File myObj = new File(PathOftheFile);
         myObj.createNewFile();
         BufferedWriter bqob = new BufferedWriter(new FileWriter(PathOftheFile));
 
         String strr = fb.readLine();
-
+        try{
+            if(strr == null)
+                throw new EmptyStackException();
+        }catch (EmptyStackException e){
+            System.out.println("Empty file!!!");
+            System.exit(0);
+        }
         while (strr != null) {
-            if (!strr.equals("-1")) {
-                if (goodString(strr)) {
-                    strr= String.valueOf(urinalscount(strr));
-                    bqob.write(strr);
-                    bqob.newLine();
-                } else {
+            if (strr.equals("-1")) {
+                   System.exit(0);}
+            else{
+                try{
+                    boolean goodOrbad= goodString(strr);
+                    if(goodOrbad==true){
+                        strr= Integer.toString(urinalscount(strr));
+                        bqob.write(strr);
+                        bqob.newLine();
+                    }
+                    else
+                        throw new IOException();
+                }catch (IOException e){
                     bqob.write("-1");
                     bqob.newLine();
+                    System.out.println("IOException detected!! Improper input provided");
+                    System.exit(0);
                 }
-            } else System.exit(0);
+            }
             strr = fb.readLine();
         }
         bqob.close();
@@ -107,12 +130,8 @@ public class urinals {
     public static int urinalscount(String stringFromInput)
     {
         int[]arr=new int[stringFromInput.length()];
-        for(int i=0;i<arr.length;i++)
-        {
-            arr[i]=0;
-        }
         for(int i=0;i<stringFromInput.length();i++)
-        {
+        {  arr[i]=0;
             if(i==0)
             {
                 if(stringFromInput.charAt(i)=='0')
@@ -156,18 +175,19 @@ public class urinals {
                     arr[i] = arr[i - 1];
                 }
                 else
-                {
+                {   int len=stringFromInput.length();
                     if(stringFromInput.charAt(i-1)=='1')
                     {
                         arr[i]=arr[i-1];
                     }
-                    else if(i+1< stringFromInput.length() && stringFromInput.charAt(i+1)=='1' )
+                    else if(i+1< len && stringFromInput.charAt(i+1)=='1' )
                     {
                         arr[i]=arr[i-1];
                     }
                     else
                     {
-                        arr[i]=Math.max(arr[i],1+arr[i-2]);
+                        if(arr[i]<arr[i-2]+1)
+                            arr[i]=1+arr[i-2];
                     }
                 }
             }
